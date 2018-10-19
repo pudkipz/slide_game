@@ -1,17 +1,15 @@
 import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 
-public class Tile implements IPositionable {
-    private final int x;
+public class Tile extends Rectangle implements IPositionable {
+    /*private final int x;
     private final int y;
     private final int width;
-    private final int height;
+    private final int height;*/
     private Action.Type action;
 
-    public Tile(int x, int y, int width, int height, Action.Type action) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public Tile(double x, double y, double width, double height, Action.Type action) {
+        super(x, y, width, height);
         this.action = action;
     }
 
@@ -38,11 +36,55 @@ public class Tile implements IPositionable {
         }
     }
 
+    public void updateColor() {
+        switch (action) {
+            case NONE:
+                setFill(Color.CADETBLUE);
+                break;
+            case MOVE_LEFT:
+                setFill(Color.LEMONCHIFFON);
+                break;
+            case MOVE_RIGHT:
+                setFill(Color.INDIANRED);
+                break;
+            case MOVE_UP:
+                setFill(Color.PLUM);
+                break;
+            case MOVE_DOWN:
+                setFill(Color.GOLD);
+                break;
+            case MOVE_STOP:
+                setFill(Color.SALMON);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public String getActionName() {
+        switch (action) {
+            case NONE:
+                return "NONE";
+            case MOVE_LEFT:
+                return "LEFT";
+            case MOVE_RIGHT:
+                return "RIGHT";
+            case MOVE_UP:
+                return "UP";
+            case MOVE_DOWN:
+                return "DOWN";
+            case MOVE_STOP:
+                return "STOP";
+            default:
+                return null;
+        }
+    }
+
     public void setAction(Action.Type action) {
         this.action = action;
     }
 
-    @Override
+    /*@Override
     public int getX() {
         return x;
     }
@@ -60,5 +102,5 @@ public class Tile implements IPositionable {
     @Override
     public int getHeight() {
         return height;
-    }
+    }*/
 }

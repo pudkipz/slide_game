@@ -13,12 +13,12 @@ public class Game {
     public static final long TENTH_SEC = 100_000_000;
     public long previousTick;
 
-    public static final int TILE_SIZE = 40;
+    public static final double TILE_SIZE = 40.0;
     public static final int TILES_X = 10;
     public static final int TILES_Y = 20;
 
     private Board board = new Board(40, 20, new Level0().getTiles());
-    private Player player = new Player(5*TILE_SIZE, 5*TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE);
+    private Player player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE);
 
     public void update(long now) {
 
@@ -29,7 +29,19 @@ public class Game {
 
         previousTick = now;
 
-        switch (board.getTiles()[player.getX()/TILE_SIZE][player.getY()/TILE_SIZE].getAction()) {
+        doCurrentTile();
+
+        if (playerAtEdge()) {
+            player.setDx(0);
+            player.setDy(0);
+        }
+
+        player.move();
+
+    }
+
+    private void doCurrentTile() {
+        switch (board.getTiles()[(int) (player.getX()/TILE_SIZE)][(int) (player.getY()/TILE_SIZE)].getAction()) {
             case MOVE_UP:
                 player.setDx(0);
                 player.setDy(-1);
@@ -53,14 +65,6 @@ public class Game {
             default:
                 break;
         }
-
-        if (playerAtEdge()) {
-            player.setDx(0);
-            player.setDy(0);
-        }
-
-        player.move();
-
     }
 
     private boolean playerAtEdge() {
