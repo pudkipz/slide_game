@@ -1,7 +1,7 @@
 public class Level0 {
     private final int width = Game.TILES_X;
     private final int height = Game.TILES_Y;
-    private final int tileSize = Game.TILE_SIZE;
+    private final double tileSize = Game.TILE_SIZE;
     private Tile[][] tiles = newBoard();
 
     private Tile[][] newBoard() {
@@ -14,8 +14,6 @@ public class Level0 {
 
         tiles[5][5].setAction(Action.Type.MOVE_RIGHT);
         tiles[7][5].setAction(Action.Type.MOVE_UP);
-
-        System.out.println(tiles[0].length);
 
         return tiles;
     }

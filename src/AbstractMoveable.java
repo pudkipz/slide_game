@@ -1,41 +1,19 @@
-public abstract class AbstractMoveable implements IPositionable {
-    private int x;
-    private int y;
-    private int dx;
-    private int dy;
-    private final int width;
-    private final int height;
+import javafx.scene.shape.*;
 
-    public AbstractMoveable(int x, int y, int dx, int dy, int width, int height) {
-        this.x = x;
-        this.y = y;
+public abstract class AbstractMoveable extends Rectangle implements IPositionable {
+    private double dx;
+    private double dy;
+
+    public AbstractMoveable(double x, double y, double dx, double dy, double width, double height) {
+        super(x, y, width, height);
+
         this.dx = dx;
         this.dy = dy;
-        this.width = width;
-        this.height = height;
     }
 
     public void move() {
-        x += dx * Game.TILE_SIZE;
-        y += dy * Game.TILE_SIZE;
-    }
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+        setX(getX() + dx * Game.TILE_SIZE);
+        setY(getY() + dy * Game.TILE_SIZE);
     }
 
     public double getDx() {
@@ -52,15 +30,5 @@ public abstract class AbstractMoveable implements IPositionable {
 
     public void setDy(int dy) {
         this.dy = dy;
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
     }
 }
