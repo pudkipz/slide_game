@@ -15,9 +15,11 @@ public class GameMenu extends MenuBar {
         Menu menuGame = new Menu("Game");
 
         MenuItem newItem = new MenuItem("New Game");
+        MenuItem playItem = new MenuItem("Play");
+        MenuItem stopItem = new MenuItem("Stop");
         MenuItem exitItem = new MenuItem("Exit");
 
-        menuGame.getItems().addAll(newItem, exitItem);
+        menuGame.getItems().addAll(newItem, playItem, stopItem, exitItem);
         return menuGame;
     }
 

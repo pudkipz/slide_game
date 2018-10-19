@@ -19,6 +19,8 @@ public class Game {
 
     private Board board = new Board(40, 20, new Level0().getTiles());
     private Player player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE);
+    private Tile hover = new Tile(0, 0, TILE_SIZE, TILE_SIZE, Action.Type.MOVE_LEFT);
+    private Tile underHover;
 
     public void update(long now) {
 
@@ -79,18 +81,34 @@ public class Game {
         return false;
     }
 
-    public List<IPositionable> getPositionables() {
-        List<IPositionable> ps = new ArrayList<>();
-        ps.add(player);
+    public void nextHover(int n) {
+        int currentIndex = -1;
 
-        for (int r=0; r<TILES_Y; r++) {
-            for (int c=0; c<TILES_X; c++) {
-                ps.add(board.getTiles()[c][r]);
+        for (int i=0; i<Action.Type.values().length; i++) {
+            if (hover.getAction() == Action.Type.values()[i]) {
+                currentIndex = i;
             }
         }
 
-        //System.out.println(ps.size());
-        return ps;
+        hover.setAction(Action.Type.values()[Math.abs((currentIndex+n)%Action.Type.values().length)]);
+    }
+
+    public Tile getUnderHover() {
+        return underHover;
+    }
+
+    public void setUnderHover(Tile t) {
+        underHover = t;
+    }
+
+    public Tile getHover() {
+        return hover;
+    }
+
+    public void setHover(Tile t) {
+        hover.setX(t.getX());
+        hover.setY(t.getY());
+        //hover.setAction(t.getAction());
     }
 
     public Board getBoard() {
