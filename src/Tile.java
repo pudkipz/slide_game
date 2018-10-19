@@ -13,6 +13,10 @@ public class Tile extends Rectangle implements IPositionable {
         this.action = action;
     }
 
+    /*public Tile(Tile t) {
+        this(t.getX(), t.getY(), t.getWidth(), t.getHeight(), t.getAction());
+    }*/
+
     public Action.Type getAction() {
         return action;
     }
@@ -22,7 +26,7 @@ public class Tile extends Rectangle implements IPositionable {
             case NONE:
                 return Color.CADETBLUE;
             case MOVE_LEFT:
-                return Color.LEMONCHIFFON;
+                return Color.ROSYBROWN;
             case MOVE_RIGHT:
                 return Color.INDIANRED;
             case MOVE_UP:
