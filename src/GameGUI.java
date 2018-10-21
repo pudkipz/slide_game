@@ -1,9 +1,8 @@
 /*
         TODO
 
-        -   Program should render when New Game is pressed, but shouldn't run until Run is pressed.
-        -   When hovering over a tile, it should light up with the selected color.
-        -   Color/action is selected by scrolling the mouse wheel.
+        -   Tile under player?
+        -   x/y coords are weird.
  */
 
 import javafx.animation.AnimationTimer;
@@ -11,12 +10,10 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.input.*;
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -60,7 +57,6 @@ public class GameGUI extends Application {
 
     private void render() {
         if (!running) {
-            System.out.println("hej");
             newGame();
         }
 
@@ -134,6 +130,7 @@ public class GameGUI extends Application {
 
         timer.start();
         running = true;
+        playing = false;
     }
 
     private void renderTiles() {

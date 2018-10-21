@@ -5,6 +5,9 @@ public class Action {
         MOVE_UP,
         MOVE_DOWN,
         MOVE_STOP,
+        ROTATE_90,
+        ROTATE_180,
+        ROTATE_270,
         NONE
     }
 

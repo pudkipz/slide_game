@@ -20,7 +20,7 @@ public abstract class AbstractMoveable extends Rectangle implements IPositionabl
         return dx;
     }
 
-    public void setDx(int dx) {
+    public void setDx(double dx) {
         this.dx = dx;
     }
 
@@ -28,7 +28,7 @@ public abstract class AbstractMoveable extends Rectangle implements IPositionabl
         return dy;
     }
 
-    public void setDy(int dy) {
+    public void setDy(double dy) {
         this.dy = dy;
     }
 }
