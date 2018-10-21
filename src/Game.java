@@ -64,8 +64,38 @@ public class Game {
                 player.setDx(0);
                 player.setDy(0);
                 break;
+            case ROTATE_90:
+                turnRight(player);
+                break;
+            case ROTATE_180:
+                turnAround(player);
+                break;
+            case ROTATE_270:
+                turnLeft(player);
+                break;
             default:
                 break;
+        }
+    }
+
+    private void turnRight(AbstractMoveable m) {
+        turnLeft(m);
+        turnLeft(m);
+        turnLeft(m);
+    }
+
+    private void turnAround(AbstractMoveable m) {
+        turnLeft(m);
+        turnLeft(m);
+    }
+
+    private void turnLeft(AbstractMoveable m) {
+        if (m.getDx() != 0) {
+            m.setDy(m.getDx()*(-1));
+            m.setDx(0);
+        } else {
+            m.setDx(m.getDy());
+            m.setDy(0);
         }
     }
 
@@ -90,7 +120,7 @@ public class Game {
             }
         }
 
-        hover.setAction(Action.Type.values()[Math.abs((currentIndex+n)%Action.Type.values().length)]);
+        hover.setAction(Action.Type.values()[((currentIndex+n+Action.Type.values().length)%Action.Type.values().length)]);
     }
 
     public Tile getUnderHover() {

@@ -35,12 +35,18 @@ public class Tile extends Rectangle implements IPositionable {
                 return Color.GOLD;
             case MOVE_STOP:
                 return Color.SALMON;
+            case ROTATE_90:
+                return Color.BURLYWOOD;
+            case ROTATE_180:
+                return Color.SADDLEBROWN;
+            case ROTATE_270:
+                return Color.FIREBRICK;
             default:
                 return null;
         }
     }
 
-    public void updateColor() {
+    /*public void updateColor() {
         switch (action) {
             case NONE:
                 setFill(Color.CADETBLUE);
@@ -63,7 +69,7 @@ public class Tile extends Rectangle implements IPositionable {
             default:
                 break;
         }
-    }
+    }*/
 
     public String getActionName() {
         switch (action) {
@@ -79,6 +85,12 @@ public class Tile extends Rectangle implements IPositionable {
                 return "DOWN";
             case MOVE_STOP:
                 return "STOP";
+            case ROTATE_90:
+                return "TURN\nRIGHT";
+            case ROTATE_180:
+                return "TURN\nAROUND";
+            case ROTATE_270:
+                return "TURN\nLEFT";
             default:
                 return null;
         }
