@@ -38,6 +38,33 @@ public class Game {
             player.setDy(0);
         }
 
+       /* COLLISION / BORDERING DETECTION
+
+       for (int c=0; c<board.getHeight(); c++) {
+            for (Tile t : board.getTiles()[c]) {
+                if (!t.isSolid() && !bordering(player, t)) {
+
+                }
+            }
+
+            if sp1.rect.centerx in range(sp2.rect.left, sp2.rect.right) and sp1.rect.top == sp2.rect.bottom:
+		if sp1.direction == 'up':
+			return True
+	elif sp1.rect.centery in range(sp2.rect.top, sp2.rect.bottom) and sp1.rect.right == sp2.rect.left:
+		if sp1.direction ==  'right':
+			return True
+	elif sp1.rect.centerx in range(sp2.rect.left, sp2.rect.right) and sp1.rect.bottom == sp2.rect.top:
+		if sp1.direction ==  'down':
+			return True
+	elif sp1.rect.centery in range(sp2.rect.top, sp2.rect.bottom) and sp1.rect.left == sp2.rect.right:
+		if sp1.direction ==  'left':
+			return True
+	else:
+		return False
+
+
+        }*/
+
         player.move();
 
     }
@@ -72,6 +99,11 @@ public class Game {
                 break;
             case ROTATE_270:
                 turnLeft(player);
+                break;
+            case GOAL:
+                System.out.println("Yay, you made it!");
+                player.setDx(0);
+                player.setDy(0);
                 break;
             default:
                 break;
@@ -120,7 +152,7 @@ public class Game {
             }
         }
 
-        hover.setAction(Action.Type.values()[((currentIndex+n+Action.Type.values().length)%Action.Type.values().length)]);
+        hover.setAction(Action.getActions()[((currentIndex+n+Action.getActions().length)%Action.getActions().length)]);
     }
 
     public Tile getUnderHover() {

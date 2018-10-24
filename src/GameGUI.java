@@ -3,6 +3,7 @@
 
         -   Tile under player?
         -   x/y coords are weird.
+        -   collision/bordering detection in Game.java, add walls.
  */
 
 import javafx.animation.AnimationTimer;
