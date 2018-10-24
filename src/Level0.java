@@ -6,14 +6,15 @@ public class Level0 {
 
     private Tile[][] newBoard() {
         tiles = new Tile[height][width];
-        for (int r=0; r<height; r++) {
-            for (int c = 0; c < width; c++) {
-                tiles[r][c] = new Tile(r * tileSize, c * tileSize, tileSize, tileSize, Action.Type.NONE);
+        for (int c=0; c<height; c++) {
+            for (int r = 0; r < width; r++) {
+                tiles[c][r] = new Tile(c * tileSize, r * tileSize, tileSize, tileSize, Action.Type.NONE);
             }
         }
 
         tiles[5][5].setAction(Action.Type.MOVE_RIGHT);
         tiles[7][5].setAction(Action.Type.MOVE_UP);
+        tiles[13][1].setAction(Action.Type.GOAL);
 
         return tiles;
     }

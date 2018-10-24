@@ -41,35 +41,12 @@ public class Tile extends Rectangle implements IPositionable {
                 return Color.SADDLEBROWN;
             case ROTATE_270:
                 return Color.FIREBRICK;
+            case GOAL:
+                return Color.WHITE;
             default:
                 return null;
         }
     }
-
-    /*public void updateColor() {
-        switch (action) {
-            case NONE:
-                setFill(Color.CADETBLUE);
-                break;
-            case MOVE_LEFT:
-                setFill(Color.LEMONCHIFFON);
-                break;
-            case MOVE_RIGHT:
-                setFill(Color.INDIANRED);
-                break;
-            case MOVE_UP:
-                setFill(Color.PLUM);
-                break;
-            case MOVE_DOWN:
-                setFill(Color.GOLD);
-                break;
-            case MOVE_STOP:
-                setFill(Color.SALMON);
-                break;
-            default:
-                break;
-        }
-    }*/
 
     public String getActionName() {
         switch (action) {
@@ -91,6 +68,8 @@ public class Tile extends Rectangle implements IPositionable {
                 return "TURN\nAROUND";
             case ROTATE_270:
                 return "TURN\nLEFT";
+            case GOAL:
+                return "GOAL";
             default:
                 return null;
         }

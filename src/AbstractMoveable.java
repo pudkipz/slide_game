@@ -1,11 +1,11 @@
 import javafx.scene.shape.*;
 
-public abstract class AbstractMoveable extends Rectangle implements IPositionable {
+public abstract class AbstractMoveable extends Tile implements IPositionable {
     private double dx;
     private double dy;
 
-    public AbstractMoveable(double x, double y, double dx, double dy, double width, double height) {
-        super(x, y, width, height);
+    public AbstractMoveable(double x, double y, double dx, double dy, double width, double height, Action.Type action) {
+        super(x, y, width, height, action);
 
         this.dx = dx;
         this.dy = dy;
