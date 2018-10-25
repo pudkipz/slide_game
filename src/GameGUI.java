@@ -52,6 +52,9 @@ public class GameGUI extends Application {
             case "Stop":
                 playing = false;
                 break;
+            case "Exit": //Added exit
+            System.exit(0);
+            break;
             default: // Nothing
         }
     }

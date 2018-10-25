@@ -100,6 +100,9 @@ public class Game {
             case ROTATE_270:
                 turnLeft(player);
                 break;
+            case JUMP:
+                player.move();
+                break;
             case GOAL:
                 System.out.println("Yay, you made it!");
                 player.setDx(0);
