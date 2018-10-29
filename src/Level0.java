@@ -5,10 +5,10 @@ public class Level0 {
     private Tile[][] tiles = newBoard();
 
     private Tile[][] newBoard() {
-        tiles = new Tile[height][width];
+        tiles = new Tile[width][height];
         for (int c=0; c<height; c++) {
             for (int r = 0; r < width; r++) {
-                tiles[c][r] = new Tile(c * tileSize, r * tileSize, tileSize, tileSize, Action.Type.NONE);
+                tiles[r][c] = new Tile(r * tileSize, c * tileSize, tileSize, tileSize, Action.Type.NONE);
             }
         }
 

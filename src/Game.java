@@ -14,10 +14,10 @@ public class Game {
     public long previousTick;
 
     public static final double TILE_SIZE = 40.0;
-    public static final int TILES_X = 10;
-    public static final int TILES_Y = 20;
+    public static final int TILES_X = 20;
+    public static final int TILES_Y = 10;
 
-    private Board board = new Board(40, 20, new Level0().getTiles());
+    private Board board = new Board(40, 40, new Level0().getTiles());
     private Player player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE);
     private Tile hover = new Tile(0, 0, TILE_SIZE, TILE_SIZE, Action.Type.MOVE_LEFT);
     private Tile underHover;
