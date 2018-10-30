@@ -1,10 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Game {
-    public static Scanner in = new Scanner(System.in);
-
     public static final double GAME_WIDTH = 800;
     public static final double GAME_HEIGHT = 400;
 
@@ -20,12 +14,10 @@ public class Game {
     private Board board = new Board(40, 40, new Level0().getTiles());
     private Player player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE);
     private Tile hover = new Tile(0, 0, TILE_SIZE, TILE_SIZE, Action.Type.MOVE_LEFT);
-    private Tile underHover;
 
     public void update(long now) {
 
         if (now - previousTick < HALF_SEC) {
-            //System.out.println("waiting");
             return;
         }
 
@@ -146,6 +138,21 @@ public class Game {
         return false;
     }
 
+    public void setTileToHover(boolean clear) {
+        Tile t = board.getTiles()[(int) (hover.getX()/TILE_SIZE)][(int) (hover.getY()/TILE_SIZE)];
+        if (!clear) {
+            setTileToHover();
+        } else {
+            t.setAction(Action.Type.NONE);
+        }
+    }
+
+    public void setTileToHover() {
+        Tile t = board.getTiles()[(int) (hover.getX()/TILE_SIZE)][(int) (hover.getY()/TILE_SIZE)];
+        t.set(hover);
+
+    }
+
     public void nextHover(int n) {
         int currentIndex = -1;
 
@@ -158,22 +165,13 @@ public class Game {
         hover.setAction(Action.getActions()[((currentIndex+n+Action.getActions().length)%Action.getActions().length)]);
     }
 
-    public Tile getUnderHover() {
-        return underHover;
-    }
-
-    public void setUnderHover(Tile t) {
-        underHover = t;
-    }
-
     public Tile getHover() {
         return hover;
     }
 
-    public void setHover(Tile t) {
+    public void setHoverPos(Tile t) {
         hover.setX(t.getX());
         hover.setY(t.getY());
-        //hover.setAction(t.getAction());
     }
 
     public Board getBoard() {

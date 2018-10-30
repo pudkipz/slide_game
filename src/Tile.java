@@ -91,6 +91,10 @@ public class Tile extends Rectangle implements IPositionable {
         actionName=getTileActionName(action);
     }
 
+    public void set(Tile t) {
+        setAction(t.action);
+    }
+
     public Color getColor() {
         return color;
     }

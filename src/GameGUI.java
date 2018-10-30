@@ -2,7 +2,7 @@
         TODO
 
         -   Tile under player?
-        -   x/y coords are weird.
+        -   Tile under goal can be changed - not good.
         -   collision/bordering detection in Game.java, add walls.
  */
 
@@ -13,7 +13,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.*;
 import javafx.scene.paint.Color;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -37,7 +36,6 @@ public class GameGUI extends Application {
     private Group labels;
 
     private AnimationTimer timer;
-    private GraphicsContext bg;
     private GameMenu menuBar;
 
     private void handleMenu(ActionEvent e) {
@@ -52,10 +50,10 @@ public class GameGUI extends Application {
             case "Stop":
                 playing = false;
                 break;
-            case "Exit": //Added exit
+            case "Exit":
             System.exit(0);
             break;
-            default: // Nothing
+            default:
         }
     }
 
@@ -76,19 +74,16 @@ public class GameGUI extends Application {
     }
 
     private void handleMouseClicked(MouseEvent event) {
-        Tile t = (Tile) event.getSource();
-
         if (event.getButton() == MouseButton.PRIMARY) {
-            game.getUnderHover().setAction(t.getAction());
+            game.setTileToHover();
         } else if (event.getButton() == MouseButton.SECONDARY) {
-            game.getUnderHover().setAction(Action.Type.NONE);
+            game.setTileToHover(true);
         }
     }
 
     private void handleMouseEntered(MouseEvent event) {
         Tile t = (Tile) event.getSource();
-        game.setUnderHover(t);
-        game.setHover(t);
+        game.setHoverPos(t);
     }
 
     @Override
@@ -126,11 +121,10 @@ public class GameGUI extends Application {
         tiles = new Group();
 
         pane.getChildren().add(tiles);
-        pane.getChildren().add(game.getPlayer());
         pane.getChildren().add(labels);
-        pane.getChildren().add(game.getHover());
-        game.getHover().setOnMouseClicked(this::handleMouseClicked);
-        game.getHover().setOnScroll(this::handleScroll);
+
+        pane.setOnMouseClicked(this::handleMouseClicked);
+        pane.setOnScroll(this::handleScroll);
 
         timer.start();
         running = true;
@@ -150,7 +144,6 @@ public class GameGUI extends Application {
                 t.setStroke(Color.BLACK);
                 t.setFill(t.getColor());
                 tiles.getChildren().add(t);
-                //t.setOnMouseClicked(this::handleMouseClicked);
                 t.setOnMouseEntered(this::handleMouseEntered);
 
                 if (t.getAction() != Action.Type.NONE) {
@@ -163,14 +156,23 @@ public class GameGUI extends Application {
             }
         }
 
-        game.getHover().setFill(game.getHover().getColor());
+        Tile hover = game.getHover();
+        tiles.getChildren().add(hover);
+        hover.setFill(game.getHover().getColor());
+        Text hoverText = new Text(hover.getX() + 6, hover.getY() + 20, hover.getActionName());
+        hoverText.setFont(new Font(10));
+        hoverText.setFill(Color.WHITE);
+        hoverText.toFront();
+        labels.getChildren().add(hoverText);
 
-        Text text = new Text(game.getPlayer().getX() + 4, game.getPlayer().getY() + 20, "PLAYER");
-        text.setFont(new Font(10));
-        text.setFill(Color.WHITE);
-        labels.getChildren().add(text);
+        Tile player = game.getPlayer();
+        tiles.getChildren().add(player);
+        Text playerText = new Text(player.getX() + 4, player.getY() + 20, "PLAYER");
+        playerText.setFont(new Font(10));
+        playerText.setFill(Color.WHITE);
+        labels.getChildren().add(playerText);
 
         //game.getPlayer().toFront();
-        //text.toFront();
+        //text.toFront();*/
     }
 }
