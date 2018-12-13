@@ -8,4 +8,4 @@ Play by selecting New Game from the game menu. Left click to place a tile, right
 
 - Java version: 9
 - Libraries: JavaFX
-- **IMPORTANT: The application runs from GameView, not Main.** This will most likely be changed later.
+- Run from Main.java
