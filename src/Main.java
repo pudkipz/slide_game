@@ -4,6 +4,7 @@
         -   Tile under player?
         -   Tile under goal can be changed - not good.
         -   collision/bordering detection in Game.java, add walls.
+        -   Better system for different tiles (states?)
  */
 
 import javafx.application.Platform;
