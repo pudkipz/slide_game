@@ -1,5 +1,3 @@
-import javafx.scene.shape.*;
-
 public abstract class AbstractMoveable extends Tile implements IPositionable {
     private double dx;
     private double dy;

@@ -7,6 +7,9 @@ public class Game {
     public static final long TENTH_SEC = 100_000_000;
     public long previousTick;
 
+    private boolean running = false;    // this is if new game has been created.
+    private boolean playing = false;    // this is if simulation is playing or is paused.
+
     public static final double TILE_SIZE = 40.0;
     public static final int TILES_X = 20;
     public static final int TILES_Y = 10;
@@ -99,15 +102,14 @@ public class Game {
     }
 
     private boolean playerAtEdge() {
-        if (player.getX() <= 0 ||
+        return (player.getX() <= 0 ||
             player.getX() + player.getWidth() >= GAME_WIDTH ||
             player.getY() <= 0 ||
-            player.getY() + player.getHeight() >= GAME_HEIGHT) {
+            player.getY() + player.getHeight() >= GAME_HEIGHT);
+    }
 
-            return true;
-        }
-
-        return false;
+    public void newGame() {
+        running = true;
     }
 
     public void setTileToHover(boolean clear) {
@@ -152,5 +154,21 @@ public class Game {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void startSim() {
+        playing = true;
+    }
+
+    public void stopSim() {
+        playing = false;
     }
 }

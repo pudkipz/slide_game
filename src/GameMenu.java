@@ -3,10 +3,16 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 
 public class GameMenu extends MenuBar {
-    public GameMenu(EventHandler<ActionEvent> menuHandler) {
+    Game game;
+    GameView view;
+
+    public GameMenu(Game game, GameView view) {
+        this.game = game;
+        this.view = view;
+
         Menu menuGame = createMenuGame();
 
-        menuGame.getItems().forEach(item -> item.setOnAction(menuHandler));
+        menuGame.getItems().forEach(item -> item.setOnAction(this::handleMenu));
 
         this.getMenus().addAll(menuGame);
     }
@@ -23,5 +29,23 @@ public class GameMenu extends MenuBar {
         return menuGame;
     }
 
-
+    private void handleMenu(ActionEvent e) {
+        MenuItem mi = (MenuItem) e.getSource();
+        switch (mi.getText()) {
+            case "New Game":
+                view.newGame();
+                game.newGame();
+                break;
+            case "Play":
+                game.startSim();
+                break;
+            case "Stop":
+                game.stopSim();
+                break;
+            case "Exit":
+                System.exit(0);
+                break;
+            default:
+        }
+    }
 }

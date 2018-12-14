@@ -8,18 +8,47 @@
         -   hiya
  */
 
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
 
     public static void main(String[] args) {
-        Platform.startup(() -> {
-            Game game = new Game();
-            Stage stage = new Stage();
-            GameView view = new GameView(game);
-            GameController controller = new GameController(view, game);
-            view.start(stage);
-        });
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        Game game = new Game();
+        GameView view = new GameView(game);
+        GameController controller = new GameController(view, game);
+        Scene scene = new Scene(view);
+
+        GameMenu menuBar = new GameMenu(game, view);
+        view.menuBar = menuBar;
+
+        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+        view.setTop(menuBar);
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (game.isRunning()) {
+                    view.render();
+                    if (game.isPlaying()) {
+                        game.update(now);
+                    }
+                }
+            }
+        };
+
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("slide_game");
+
+        primaryStage.show();
+        timer.start();
     }
 }
