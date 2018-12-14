@@ -1,7 +1,6 @@
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-// import javafx.event.ActionEvent;
 
 public class GameController {
     private Game game;
@@ -12,7 +11,6 @@ public class GameController {
     }
 
     private void initComponents(GameView view) {
-        System.out.println(view.getPane());
         view.getPane().setOnMouseClicked(this::handleMouseClicked);
         view.getPane().setOnScroll(this::handleScroll);
 
