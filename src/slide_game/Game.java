@@ -1,3 +1,8 @@
+package slide_game;
+
+import slide_game.action_states.None;
+import slide_game.action_states.TurnLeft;
+
 public class Game {
     public static final double GAME_WIDTH = 800;
     public static final double GAME_HEIGHT = 400;
@@ -15,8 +20,8 @@ public class Game {
     public static final int TILES_Y = 10;
 
     private Board board = new Board(40, 40, new Level0().getTiles());
-    private Player player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 0, 0, TILE_SIZE, TILE_SIZE);
-    private Tile hover = new Tile(0, 0, TILE_SIZE, TILE_SIZE, Action.Type.MOVE_LEFT);
+    private Player player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 1, 0, TILE_SIZE, TILE_SIZE);
+    private Tile hover = new Tile(0, 0, new TurnLeft());
 
     public void update(long now) {
 
@@ -37,68 +42,8 @@ public class Game {
     }
 
     private void doCurrentTile() {
-        switch (board.getTiles()[(int) (player.getX()/TILE_SIZE)][(int) (player.getY()/TILE_SIZE)].getAction()) {
-            case MOVE_UP:
-                player.setDx(0);
-                player.setDy(-1);
-                break;
-            case MOVE_DOWN:
-                player.setDx(0);
-                player.setDy(1);
-                break;
-            case MOVE_LEFT:
-                player.setDx(-1);
-                player.setDy(0);
-                break;
-            case MOVE_RIGHT:
-                player.setDx(1);
-                player.setDy(0);
-                break;
-            case MOVE_STOP:
-                player.setDx(0);
-                player.setDy(0);
-                break;
-            case ROTATE_90:
-                turnRight(player);
-                break;
-            case ROTATE_180:
-                turnAround(player);
-                break;
-            case ROTATE_270:
-                turnLeft(player);
-                break;
-            case JUMP:
-                player.move();
-                break;
-            case GOAL:
-                System.out.println("Yay, you made it!");
-                player.setDx(0);
-                player.setDy(0);
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void turnRight(AbstractMoveable m) {
-        turnLeft(m);
-        turnLeft(m);
-        turnLeft(m);
-    }
-
-    private void turnAround(AbstractMoveable m) {
-        turnLeft(m);
-        turnLeft(m);
-    }
-
-    private void turnLeft(AbstractMoveable m) {
-        if (m.getDx() != 0) {
-            m.setDy(m.getDx()*(-1));
-            m.setDx(0);
-        } else {
-            m.setDx(m.getDy());
-            m.setDy(0);
-        }
+        Tile currentTile = getTileAt(player.getX(), player.getY());
+        currentTile.getAction().doAction(player);
     }
 
     private boolean playerAtEdge() {
@@ -109,26 +54,34 @@ public class Game {
     }
 
     public void newGame() {
+        //board = new Board(40, 40, new Level0().getTiles());
+        //player = new Player(5.0*TILE_SIZE, 5.0*TILE_SIZE, 1, 0, TILE_SIZE, TILE_SIZE);
+
+        playing = false;
         running = true;
     }
 
+    private Tile getTileAt(double x, double y) {
+        return board.getTiles()[(int) (y/TILE_SIZE)][(int) (x/TILE_SIZE)];
+    }
+
     public void setTileToHover(boolean clear) {
-        Tile t = board.getTiles()[(int) (hover.getX()/TILE_SIZE)][(int) (hover.getY()/TILE_SIZE)];
+        Tile t = getTileAt(hover.getX(), hover.getY());
         if (!clear) {
             setTileToHover();
         } else {
-            t.setAction(Action.Type.NONE);
+            t.setAction(new None());
         }
     }
 
     public void setTileToHover() {
-        Tile t = board.getTiles()[(int) (hover.getX()/TILE_SIZE)][(int) (hover.getY()/TILE_SIZE)];
-        t.set(hover);
+        Tile t = getTileAt(hover.getX(), hover.getY());
+        t.setAction(hover.getNew());
 
     }
 
     public void nextHover(int n) {
-        int currentIndex = -1;
+        /*int currentIndex = -1;
 
         for (int i=0; i<Action.Type.values().length; i++) {
             if (hover.getAction() == Action.Type.values()[i]) {
@@ -137,6 +90,7 @@ public class Game {
         }
 
         hover.setAction(Action.getActions()[((currentIndex+n+Action.getActions().length)%Action.getActions().length)]);
+   */
     }
 
     public Tile getHover() {

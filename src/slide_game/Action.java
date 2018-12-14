@@ -1,4 +1,4 @@
-//Made action abstract, since the only objects that exist and interact are tiles.
+package slide_game;//Made action abstract, since the only objects that exist and interact are tiles.
 
 public abstract class Action {
     public enum Type {

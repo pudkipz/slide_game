@@ -1,3 +1,5 @@
+package slide_game;
+
 public class Board {
     private final int width;
     private final int height;

@@ -1,16 +1,15 @@
-/*
+package slide_game;/*
         TODO
 
-        -   Tile under player?
-        -   Tile under goal can be changed - not good.
-        -   collision/bordering detection in Game.java, add walls.
-        -   Better system for different tiles (states?)
-        -   hiya
+        -   slide_game.Tile under player?
+        -   slide_game.Tile under goal can be changed - not good.
+        -   collision/bordering detection in slide_game.Game.java, add walls.
+        -   New Game should reset the board.
+        -   AbstractMoveable shouldn't have to be a Tile - what should Player be?
  */
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 

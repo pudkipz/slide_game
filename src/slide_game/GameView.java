@@ -1,3 +1,5 @@
+package slide_game;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,12 +12,10 @@ import javafx.scene.text.Text;
 public class GameView extends BorderPane {
     private Game game;
 
-    private Scene scene;
     private Pane pane;
     private Group tiles;
     private Group labels;
 
-    private AnimationTimer timer;
     GameMenu menuBar;
 
     public GameView(Game game) {
@@ -82,13 +82,11 @@ public class GameView extends BorderPane {
         t.setStroke(Color.BLACK);
         t.setFill(t.getColor());
 
-        if (t.getAction() != Action.Type.NONE) {
-            Text text = new Text(t.getX() + 6, t.getY() + 20, t.getActionName());
-            text.setFont(new Font(10));
-            text.setFill(Color.WHITE);
+        Text text = new Text(t.getX() + 6, t.getY() + 20, t.getActionName());
+        text.setFont(new Font(10));
+        text.setFill(Color.WHITE);
 
-            labels.getChildren().add(text);
-        }
+        labels.getChildren().add(text);
     }
 
     Pane getPane() {

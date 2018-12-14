@@ -1,5 +1,6 @@
+package slide_game;
+
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
 
 public class GameMenu extends MenuBar {
