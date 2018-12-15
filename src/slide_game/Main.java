@@ -5,6 +5,7 @@ package slide_game;/*
         -   slide_game.Tile under goal can be changed - not good.
         -   New Game should reset the board.
         -   AbstractMoveable shouldn't have to be a Tile - what should Player be?
+        -   Create a factory, so as to reduce the number of imports.
  */
 
 import javafx.animation.AnimationTimer;
@@ -22,8 +23,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Game game = new Game();
         GameView view = new GameView(game);
-        GameController controller = new GameController(view, game);
         Scene scene = new Scene(view);
+        GameController controller = new GameController(scene, game);
 
         GameMenu menuBar = new GameMenu(game, view);
         view.menuBar = menuBar;

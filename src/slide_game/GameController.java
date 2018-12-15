@@ -1,20 +1,20 @@
 package slide_game;
 
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.Scene;
+import javafx.scene.input.*;
 
 public class GameController {
     private Game game;
 
-    GameController(GameView view, Game game) {
+    GameController(Scene scene, Game game) {
         this.game = game;
-        initComponents(view);
+        initComponents(scene);
     }
 
-    private void initComponents(GameView view) {
-        view.getPane().setOnMouseClicked(this::handleMouseClicked);
-        view.getPane().setOnScroll(this::handleScroll);
+    private void initComponents(Scene scene) {
+        scene.setOnMouseClicked(this::handleMouseClicked);
+        scene.setOnScroll(this::handleScroll);
+        scene.setOnKeyPressed(this::handleKeyPressed);
 
         Tile[][] board = game.getBoard().getTiles();
         for (int r = 0; r < board.length; r++) {
@@ -23,6 +23,12 @@ public class GameController {
 
                 t.setOnMouseEntered(this::handleMouseEntered);
             }
+        }
+    }
+
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
+            game.nextHover(1);
         }
     }
 
