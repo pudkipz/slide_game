@@ -18,6 +18,7 @@ public class Level0 {
 
         //tiles[5][5].setAction(new TurnRight());
         tiles[5][7].setAction(new TurnLeft());
+        tiles[8][10].setAction(new Wall());
         tiles[1][13].setAction(new Goal());
 
         return tiles;

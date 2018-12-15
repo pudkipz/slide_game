@@ -13,6 +13,7 @@ public abstract class Action {
         JUMP,
 
         GOAL,
+        WALL,
         NONE,
         PLAYER
     }
