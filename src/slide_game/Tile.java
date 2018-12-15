@@ -63,6 +63,10 @@ public class Tile extends Rectangle implements IPositionable {
         return actionState.getActionName();
     }
 
+    public Action.Type getActionType() {
+        return actionState.getActionType();
+    }
+
     public ActionState getNew() {
         return actionState.getNew();
     }

@@ -1,5 +1,6 @@
 package slide_game;
 
+import slide_game.action_states.ActionState;
 import slide_game.action_states.None;
 import slide_game.action_states.TurnLeft;
 
@@ -81,16 +82,14 @@ public class Game {
     }
 
     public void nextHover(int n) {
-        /*int currentIndex = -1;
+        ActionState[] actions = Action.getActions();
 
         for (int i=0; i<Action.Type.values().length; i++) {
-            if (hover.getAction() == Action.Type.values()[i]) {
-                currentIndex = i;
+            if (hover.getActionType() == actions[i].getActionType()) {
+                hover.setAction(actions[(i + n + actions.length) % actions.length].getNew());
+                return;
             }
         }
-
-        hover.setAction(Action.getActions()[((currentIndex+n+Action.getActions().length)%Action.getActions().length)]);
-   */
     }
 
     public Tile getHover() {

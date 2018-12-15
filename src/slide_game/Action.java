@@ -1,5 +1,7 @@
 package slide_game;//Made action abstract, since the only objects that exist and interact are tiles.
 
+import slide_game.action_states.*;
+
 public abstract class Action {
     public enum Type {
         MOVE_LEFT,
@@ -19,7 +21,7 @@ public abstract class Action {
     }
 
 
-    private static final Action.Type[] actions= {
+    /*private static final Action.Type[] actions= {
             Type.MOVE_LEFT,
             Type.MOVE_RIGHT,
             Type.MOVE_UP,
@@ -28,11 +30,17 @@ public abstract class Action {
             Type.ROTATE_90,
             Type.ROTATE_180,
             Type.ROTATE_270,
-            Type.JUMP};
+            Type.JUMP};*/
 
-    //Could maybe create two enums, one for action tiles and one for player. Also, shouldn't you be able to place
-    //player and goal?
-    public static Action.Type[] getActions () {
+    private static final ActionState[] actions = {
+            new Stop(),
+            new TurnRight(),
+            new TurnAround(),
+            new TurnLeft(),
+            new Jump()
+    };
+
+    public static ActionState[] getActions () {
         return actions;
     }
 }

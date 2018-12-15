@@ -3,7 +3,6 @@ package slide_game;/*
 
         -   slide_game.Tile under player?
         -   slide_game.Tile under goal can be changed - not good.
-        -   collision/bordering detection in slide_game.Game.java, add walls.
         -   New Game should reset the board.
         -   AbstractMoveable shouldn't have to be a Tile - what should Player be?
  */

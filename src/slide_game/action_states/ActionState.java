@@ -14,7 +14,7 @@ public abstract class ActionState {
 
     public abstract ActionState getNew();
 
-    public Action.Type getAction() {
+    public Action.Type getActionType() {
         return action;
     }
 
