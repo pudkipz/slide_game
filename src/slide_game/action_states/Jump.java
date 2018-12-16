@@ -10,6 +10,7 @@ public class Jump extends ActionState {
         action = Action.Type.JUMP;
         color = Color.GREEN;
         actionName = "JUMP";
+        replaceable = true;
     }
 
     public void doAction(AbstractMoveable m) {

@@ -10,6 +10,7 @@ public class TurnAround extends ActionState {
         action = Action.Type.ROTATE_180;
         color = Color.SADDLEBROWN;
         actionName = "TURN\nAROUND";
+        replaceable = true;
     }
 
     public void doAction(AbstractMoveable m) {

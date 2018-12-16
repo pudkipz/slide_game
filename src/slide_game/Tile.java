@@ -70,4 +70,8 @@ public class Tile extends Rectangle implements IPositionable {
     public ActionState getNew() {
         return actionState.getNew();
     }
+
+    public boolean isReplaceable() {
+        return actionState.isReplaceable();
+    }
 }

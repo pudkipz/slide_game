@@ -86,8 +86,4 @@ public class GameView extends BorderPane {
 
         labels.getChildren().add(text);
     }
-
-    Pane getPane() {
-        return pane;
-    }
 }

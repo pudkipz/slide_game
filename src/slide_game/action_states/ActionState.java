@@ -9,6 +9,7 @@ public abstract class ActionState {
     protected Action.Type action;
     protected Color color;
     protected String actionName;
+    protected boolean replaceable;
 
     public abstract void doAction(AbstractMoveable m);
 
@@ -24,5 +25,9 @@ public abstract class ActionState {
 
     public String getActionName() {
         return actionName;
+    }
+
+    public boolean isReplaceable() {
+        return replaceable;
     }
 }

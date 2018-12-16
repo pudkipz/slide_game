@@ -10,6 +10,7 @@ public class TurnRight extends ActionState {
         action = Action.Type.ROTATE_90;
         color = Color.INDIANRED;
         actionName = "TURN\nRight";
+        replaceable = true;
     }
 
     public void doAction(AbstractMoveable m) {

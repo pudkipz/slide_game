@@ -10,6 +10,7 @@ public class Goal extends ActionState {
         action = Action.Type.GOAL;
         color = Color.WHITE;
         actionName = "GOAL";
+        replaceable = false;
     }
 
     public void doAction(AbstractMoveable m) {

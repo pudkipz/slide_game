@@ -10,6 +10,7 @@ public class TurnLeft extends ActionState {
         action = Action.Type.ROTATE_270;
         color = Color.ROSYBROWN;
         actionName = "TURN\nLEFT";
+        replaceable = true;
     }
 
     public void doAction(AbstractMoveable m) {

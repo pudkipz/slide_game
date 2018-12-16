@@ -10,6 +10,7 @@ public class Wall extends ActionState {
         action = Action.Type.WALL;
         color = Color.BLACK;
         actionName = "";
+        replaceable = false;
     }
 
     public void doAction(AbstractMoveable m) {

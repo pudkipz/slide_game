@@ -10,6 +10,7 @@ public class Stop extends ActionState {
         action = Action.Type.MOVE_STOP;
         color = Color.SALMON;
         actionName = "STOP";
+        replaceable = true;
     }
 
     public void doAction(AbstractMoveable m) {

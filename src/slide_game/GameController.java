@@ -21,7 +21,9 @@ public class GameController {
             for (int c = 0; c < board[r].length; c++) {
                 Tile t = board[r][c];
 
-                t.setOnMouseEntered(this::handleMouseEntered);
+                if (t.isReplaceable()) {
+                    t.setOnMouseEntered(this::handleMouseEntered);
+                }
             }
         }
     }

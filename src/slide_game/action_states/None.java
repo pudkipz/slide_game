@@ -10,6 +10,7 @@ public class None extends ActionState {
         action = Action.Type.NONE;
         color = Color.CADETBLUE;
         actionName = "";
+        replaceable = true;
     }
 
     public void doAction(AbstractMoveable m) {
